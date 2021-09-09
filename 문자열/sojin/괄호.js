@@ -12,7 +12,7 @@ if (arr.length !== n * 1)
 // 입력 문자열의 갯수가 가변할탠데, 변수로 뽑기도 애해함. 
 // 이중 for 문을 벗길 좋은 방법이 있을까?
 for (let i = 0; i < arr.length; i++) {
-    let stack = []
+    const stack = []
     let isError = false
 
     for (let j = 0; j < arr[i].length; j++) {
@@ -20,7 +20,15 @@ for (let i = 0; i < arr.length; i++) {
         if (tmp === ')') {
             // ')' 를 뽑았는데 stack 에 '(' 가 없다면 error, 하나라도 있다면 '(' 제거
             // isError 를 true 로 바꿔주고 break 로 빠져나올까 고민하게 됨 (효율성 에러가 안나서 굳이 해야하나 싶은?)
-            stack.length === 0 ? isError = true : stack.pop()
+            // break 사용해보기!
+            // stack.length === 0 ? isError = true : stack.pop()
+            if (stack.length === 0) {
+                isError = true
+                break;
+            }
+            else {
+                stack.pop()
+            }
             // 3항연산자 바로바로 쓸 수 있도록 연습
         }
         else {
